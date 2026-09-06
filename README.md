@@ -44,8 +44,8 @@ encryptedChatFlask/
 │   ├── home.html           # Landing page: create / join a room
 │   └── room.html           # Chat room UI + client-side socket + decrypt logic
 ├── main.py                 # Flask app, routes, and Socket.IO event handlers
-├── requirements.txt         # Python dependencies
-├── liara.json               # Liara deployment config
+├── requirements.txt        # Python dependencies
+├── liara.json                # Liara deployment config
 └── vercel.json               # Vercel deployment config
 ```
 
@@ -142,17 +142,3 @@ This project was developed as part of the **Network Security** course to explore
 - Symmetric encryption concepts using a classical cipher
 - The security trade-offs of transposition ciphers (small key space, no diffusion of individual characters, susceptibility to brute-force/frequency analysis)
 - Practical considerations for storing and transmitting "encrypted" data in a web application
-
-### Possible Extensions / Discussion Points
-
-- Replace the Rail Fence cipher with a modern authenticated encryption scheme (e.g., AES-GCM) and compare performance/security trade-offs
-- Encrypt messages **end-to-end** (client-side) instead of server-side, so the server never sees plaintext
-- Add TLS/HTTPS and secure WebSocket (`wss://`) support
-- Move secrets (Mongo URI, Flask secret key, cipher key) out of source code and into environment variables/secret managers
-- Add per-room or per-user encryption keys instead of a single hardcoded key
-
----
-
-## License
-
-This project is provided for educational purposes as part of a university course assignment.
