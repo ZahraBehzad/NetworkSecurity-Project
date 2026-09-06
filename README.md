@@ -80,7 +80,7 @@ Implemented in `functions/railFence.py`:
 
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/encryptedChatFlask.git
+git clone https://github.com/ZahraBehzad/NetworkSecurity-Project.git
 cd encryptedChatFlask
 
 # (Recommended) create a virtual environment
