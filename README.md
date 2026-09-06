@@ -1,6 +1,15 @@
 # Encrypted Chat Flask
 
-A real-time chat room application built with Flask and Flask-SocketIO. Users can create or join chat rooms with a short room code, and all messages are encrypted with a Rail Fence cipher before being broadcast and stored, then decrypted client-side for display.
+A real-time chat room application built with Flask and Flask-SocketIO, developed as a course project for **Network Security**. Users can create or join chat rooms with a short room code, and all messages are encrypted with a Rail Fence cipher before being broadcast and stored, then decrypted client-side for display — demonstrating classical cipher techniques applied to a live network communication channel.
+
+## Course Context
+
+This project was built to fulfill a Network Security course assignment. Its goal is to demonstrate:
+
+- Encrypting data in transit over a network (WebSocket messages) using a classical transposition cipher
+- The client-server encryption/decryption workflow: the server encrypts before broadcasting, and clients decrypt on receipt via a dedicated endpoint
+- Persisting encrypted state (messages) and understanding the trade-offs of storing ciphertext vs. plaintext
+- Practical limitations of classical ciphers, contrasted with modern cryptographic standards (see [Security Notes](#security-notes))
 
 ## Features
 
@@ -80,12 +89,12 @@ encryptedChatFlask/
 
 ## Security Notes
 
-This project is a learning/demo implementation, not production-hardened. Before deploying it or sharing the repo publicly, consider:
+This project is an educational demo built for coursework, not a production-hardened system. It's a good jumping-off point for discussing real-world security gaps:
 
-- **Move all secrets out of source code.** `main.py` currently contains a hardcoded MongoDB connection string (with credentials) and a hardcoded Flask `SECRET_KEY`. Rotate that database password immediately if this code has ever been pushed to a public repo, and load both values from environment variables instead.
-- **Rail Fence is a classical/educational cipher**, not cryptographically secure — it's easily broken and shouldn't be relied on to protect sensitive data. It's well suited for demonstrating the encrypt/decrypt flow, not for real confidentiality.
+- **Rail Fence is a classical/educational cipher, not cryptographically secure.** It's a transposition cipher with a small key space (the key is just the number of rails), so it's trivially breakable via brute force or frequency/pattern analysis. It's useful here for demonstrating the encrypt/decrypt pipeline end-to-end, but should not be relied on for real confidentiality. A natural extension/discussion point is comparing it to modern symmetric ciphers (e.g. AES) or a proper key-exchange scheme (e.g. TLS, which is what actually protects the WebSocket transport in production deployments).
+- **Move all secrets out of source code.** `main.py` currently contains a hardcoded MongoDB connection string (with credentials) and a hardcoded Flask `SECRET_KEY`. Rotate that database password if this code has ever been pushed to a public repo, and load both values from environment variables instead — this is itself a good example of a common real-world vulnerability (secrets committed to version control) to note in a network security writeup.
 - Consider adding input validation/sanitization on messages and room codes before rendering them, to avoid injection issues.
 
 ## License
 
-Add a license of your choice (e.g. MIT) here.
+Add a license of your choice (e.g. MIT) here, or omit if this is a private course submission.
