@@ -8,11 +8,11 @@ from functions import railFence
 railFenceKey=3
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "hjhjsdahhds"
+app.config["SECRET_KEY"] = "a-random-secret-key"
 socketio = SocketIO(app)
 
 # Connect to MongoDB
-client = MongoClient("mongodb+srv://zahrabehzad:platinco@clustertrain.vkkabwu.mongodb.net/?retryWrites=true&w=majority&appName=ClusterTrain")
+client = MongoClient("your-mongodb-connection-string")
 db = client["chat_app"]
 messages_collection = db["messages"]
 
